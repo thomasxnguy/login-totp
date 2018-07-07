@@ -31,10 +31,6 @@ class ParameterInterceptor implements HandlerInterceptor {
      * The post-handle method is invoked for EVERY request, after the request
      * handler (@Controller method) has been invoked and before the View is
      * processed to create the response.
-     * <p>
-     * The Spring Web course covers advanced Spring MVC features like this.
-     * <p>
-     * DETAILS: {@inheritDoc}
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -51,7 +47,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     /**
      * Add a custom HandlerInterceptor to ensure the Principal is always added to
-     * every request (if ther is one).
+     * every request.
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
