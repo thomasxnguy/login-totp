@@ -11,7 +11,7 @@ public class Login {
         return "login";
     }
 
-    // Login form
+    // Access page
     @RequestMapping("/helloworld")
     public String helloworld() {
         return "helloworld.html";
