@@ -4,6 +4,6 @@ INSERT INTO users(username,password,enabled)
 VALUES ('login','$2a$10$nliECRWpVralMdY13EKV7u.xAkZ2WkdNJdnAAIxZiXLs2o1iVc0xm', true);
 
 INSERT INTO user_roles (username, role)
-VALUES ('admin', 'ADMIN');
+VALUES ('admin', 'ROLE_ADMIN');
 INSERT INTO user_roles (username, role)
-VALUES ('login', 'USER');
+VALUES ('login', 'ROLE_USER');

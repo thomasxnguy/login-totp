@@ -37,13 +37,20 @@ class ParameterInterceptor implements HandlerInterceptor {
                            ModelAndView modelAndView) throws Exception {
         Principal principal = request.getUserPrincipal();
 
-        if (principal != null)
+        if (modelAndView != null && principal != null)
             modelAndView.addObject("principal", principal);
     }
 }
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
+
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/login");
+        registry.addViewController("/profile");
+        registry.addViewController("/denied");
+    }
 
     /**
      * Add a custom HandlerInterceptor to ensure the Principal is always added to

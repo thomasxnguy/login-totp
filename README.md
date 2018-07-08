@@ -1,4 +1,4 @@
-# spring-project
+# Login Page with Spring
 Simple login page using using Spring Boot, Spring Data, Spring Security, Spring MVC
 
 Add 2FactorAuthentication following OTP specification

@@ -24,15 +24,13 @@
         <p>Sorry, Access Denied</p>
         <p><a href="/" class="btn btn-link">Return to Home Page</a></p>
         <div>
-            {{#principal}}
+        <p><span th:text="|${principal}|"></span></p>
             <form action="/logout" method="post" class="form-horizontal">
                 <fieldset>
                     <input type="submit" value="Logout" class="btn btn-link" />
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    ({{principal.username}})
                 </fieldset>
             </form>
-            {{/principal}}
         </div>
 
     </div>
