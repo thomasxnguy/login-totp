@@ -1,5 +1,7 @@
-package com.example.auth.totp;
+package com.example.auth.totp.impl;
 
+import com.example.auth.totp.OTPService;
+import com.example.auth.totp.TOTP;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -16,9 +18,9 @@ import java.net.URLEncoder;
 import java.security.SecureRandom;
 
 @Service
-public class GoogleOTPService {
+public class GoogleOTPService implements OTPService {
 
-    public static String getRandomSecretKey() {
+    public String generateSecretKey() {
         SecureRandom random = new SecureRandom();
         byte[] bytes = new byte[20];
         random.nextBytes(bytes);
@@ -29,7 +31,7 @@ public class GoogleOTPService {
         return secretKey.toLowerCase().replaceAll("(.{4})(?=.{4})", "$1 ");
     }
 
-    public static String getTOTPCode(String secretKey) {
+    public String getTOTP(String secretKey) {
         String normalizedBase32Key = secretKey.replace(" ", "").toUpperCase();
         Base32 base32 = new Base32();
         byte[] bytes = base32.decode(normalizedBase32Key);
@@ -39,7 +41,7 @@ public class GoogleOTPService {
         return TOTP.generateTOTP(hexKey, hexTime, "6");
     }
 
-    public static String getGoogleAuthenticatorBarCode(String secretKey, String account, String issuer) {
+    private String getGoogleAuthenticatorBarCode(String secretKey, String account, String issuer) {
         String normalizedBase32Key = secretKey.replace(" ", "").toUpperCase();
         try {
             return "otpauth://totp/"
@@ -51,7 +53,7 @@ public class GoogleOTPService {
         }
     }
 
-    public static void createQRCode(String barCodeData, String filePath, int height, int width)
+    public void createQRCode(String barCodeData, String filePath, int height, int width)
             throws WriterException, IOException {
         BitMatrix matrix = new MultiFormatWriter().encode(barCodeData, BarcodeFormat.QR_CODE,
                 width, height);
