@@ -41,21 +41,22 @@ public class GoogleOTPService implements OTPService {
         return TOTP.generateTOTP(hexKey, hexTime, "6");
     }
 
-    private String getGoogleAuthenticatorBarCode(String secretKey, String account, String issuer) {
+    private String getGoogleAuthenticatorBarCode(String secretKey, String account) {
         String normalizedBase32Key = secretKey.replace(" ", "").toUpperCase();
         try {
             return "otpauth://totp/"
-                    + URLEncoder.encode(issuer + ":" + account, "UTF-8").replace("+", "%20")
+                    + URLEncoder.encode(TOTP.ISSUER + ":" + account, "UTF-8").replace("+", "%20")
                     + "?secret=" + URLEncoder.encode(normalizedBase32Key, "UTF-8").replace("+", "%20")
-                    + "&issuer=" + URLEncoder.encode(issuer, "UTF-8").replace("+", "%20");
+                    + "&issuer=" + URLEncoder.encode(TOTP.ISSUER, "UTF-8").replace("+", "%20");
         } catch (UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
     }
 
-    public void createQRCode(String barCodeData, String filePath, int height, int width)
+    public void createQRCode(String secretKey, String account, String filePath, int height, int width)
             throws WriterException, IOException {
-        BitMatrix matrix = new MultiFormatWriter().encode(barCodeData, BarcodeFormat.QR_CODE,
+        String totpUrl = getGoogleAuthenticatorBarCode(secretKey, account);
+        BitMatrix matrix = new MultiFormatWriter().encode(totpUrl, BarcodeFormat.QR_CODE,
                 width, height);
         try (FileOutputStream out = new FileOutputStream(filePath)) {
             MatrixToImageWriter.writeToStream(matrix, "png", out);

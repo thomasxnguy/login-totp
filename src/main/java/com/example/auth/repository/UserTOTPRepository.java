@@ -1,15 +1,18 @@
 package com.example.auth.repository;
 
 import com.example.auth.repository.jpa.UserTOTP;
-import org.hibernate.mapping.PrimaryKey;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 
-public interface UserTOTPRepository extends CrudRepository<UserTOTP, PrimaryKey> {
+@Repository
+public interface UserTOTPRepository extends CrudRepository<UserTOTP, String> {
 
     <S extends UserTOTP> S save(S entity);
 
-    UserTOTP findOne(String userName);
+    Optional<UserTOTP> findById(String userName);
 
-    void delete(String userName);
+    void deleteById(String userName);
 }

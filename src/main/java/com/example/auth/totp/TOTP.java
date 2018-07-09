@@ -16,6 +16,8 @@ import java.security.GeneralSecurityException;
 
 public class TOTP {
 
+    public static final String ISSUER = "MY_APPLICATION";
+
     private TOTP() {
     }
 

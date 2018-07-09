@@ -10,5 +10,5 @@ public interface OTPService {
 
     String getTOTP(String secretKey);
 
-    void createQRCode(String barCodeData, String filePath, int height, int width) throws WriterException, IOException;
+    void createQRCode(String secretKey, String account, String filePath, int height, int width) throws WriterException, IOException;
 }
