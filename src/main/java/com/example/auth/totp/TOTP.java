@@ -13,9 +13,11 @@ import java.security.GeneralSecurityException;
  * Visit www.openauthentication.org for more information.
  *
  */
-
 public class TOTP {
 
+    /**
+     * To be replaced by application issuer
+     */
     public static final String ISSUER = "MY_APPLICATION";
 
     private TOTP() {

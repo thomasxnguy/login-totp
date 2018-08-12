@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-
+/**
+ * Instant repository for UserTOTP.
+ */
 @Repository
 public interface UserTOTPRepository extends CrudRepository<UserTOTP, String> {
 

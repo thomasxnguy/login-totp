@@ -8,6 +8,9 @@ import java.util.Collection;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * Enumeration of all different authority supported by this application
+ */
 public enum Authority {
 
     ADMIN,
@@ -19,10 +22,16 @@ public enum Authority {
         this.grantedAuthority = new SimpleGrantedAuthority(name());
     }
 
+    /**
+     * Return : a collection of all authorities
+     */
     public static Collection<GrantedAuthority> allAuthorities() {
         return Arrays.stream(values()).map(Authority::getAuthority).collect(toList());
     }
 
+    /**
+     * Return : a GrantedAuthority associated to Authority
+     */
     public GrantedAuthority getAuthority() {
         return grantedAuthority;
     }

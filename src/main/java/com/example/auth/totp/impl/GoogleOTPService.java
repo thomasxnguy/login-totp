@@ -31,14 +31,14 @@ public class GoogleOTPService implements OTPService {
         return secretKey.toLowerCase().replaceAll("(.{4})(?=.{4})", "$1 ");
     }
 
-    public String getTOTP(String secretKey) {
+    public String getTOTP(String secretKey, int digit) {
         String normalizedBase32Key = secretKey.replace(" ", "").toUpperCase();
         Base32 base32 = new Base32();
         byte[] bytes = base32.decode(normalizedBase32Key);
         String hexKey = Hex.encodeHexString(bytes);
         long time = (System.currentTimeMillis() / 1000) / 30;
         String hexTime = Long.toHexString(time);
-        return TOTP.generateTOTP(hexKey, hexTime, "6");
+        return TOTP.generateTOTP(hexKey, hexTime, Integer.toString(digit));
     }
 
     private String getGoogleAuthenticatorBarCode(String secretKey, String account) {

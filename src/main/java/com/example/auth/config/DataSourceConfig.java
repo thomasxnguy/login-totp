@@ -4,6 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+/**
+ * Configuration class for Datasource.
+ * For simplification we use an in-memory DB in the application.
+ * H2 console is accessible with "ADMIN" authority.
+ */
 @Configuration
 public class DataSourceConfig {
 

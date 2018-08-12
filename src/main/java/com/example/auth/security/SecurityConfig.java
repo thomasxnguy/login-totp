@@ -12,7 +12,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-
+/**
+ * Configuration class for Spring Security.
+ * For simplification we use an in-memory DB for storing credentials.
+ * H2 console is accessible with "ADMIN" authority.
+ */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity

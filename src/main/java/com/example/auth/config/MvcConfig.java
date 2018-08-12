@@ -1,5 +1,6 @@
 package com.example.auth.config;
 
+import org.h2.server.web.WebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,16 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
 
-import org.h2.server.web.WebServlet;
-
-
 /**
  * Spring does not automatically add the currently logged in user (the
  * Principal) to the Model. This intercepter will do so.
- *
- * @param principal
- *            The currently logged in user (may be null)
- * @return Return the principal - will be added to the model as "principal".
  *
  */
 class ParameterInterceptor implements HandlerInterceptor {
@@ -42,6 +36,9 @@ class ParameterInterceptor implements HandlerInterceptor {
     }
 }
 
+/**
+ * Configuration class for Spring MVC.
+ */
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
