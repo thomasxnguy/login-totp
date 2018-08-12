@@ -24,3 +24,4 @@ Clik on "Activate TOTP"
 
 #### Step4
 Run the `google-authenticator` and scan the following QR Code
+<img src="https://github.com/thomasxnguy/login-totp/blob/master/img/QR_img.png">
