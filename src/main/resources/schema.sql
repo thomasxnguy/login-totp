@@ -13,6 +13,6 @@ CREATE TABLE user_roles (
 
 CREATE  TABLE users_totp (
   username VARCHAR(45) NOT NULL ,
-  key VARCHAR(200) NOT NULL ,
+  secret VARCHAR(200) NOT NULL ,
   enabled TINYINT NOT NULL DEFAULT 0 ,
   PRIMARY KEY (username));

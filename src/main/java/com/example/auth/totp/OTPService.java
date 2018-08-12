@@ -30,6 +30,7 @@ public interface OTPService {
      * @param filePath : output directory to store the QR
      * @param height : QR's height
      * @param width : QR's width
+     * @return : Url to QR
      */
-    void createQRCode(String secretKey, String account, String filePath, int height, int width) throws WriterException, IOException;
+    String createQRCode(String secretKey, String account, String filePath, int height, int width) throws WriterException, IOException;
 }

@@ -35,8 +35,9 @@ public class ProfileTOTPController {
             String secretKey = otpService.generateSecretKey();
             String path = "/static/qr."+userName;
             try {
-                otpService.createQRCode(secretKey, userName, path, 20, 20);
-                model.addAttribute("qr", path);
+                String qrUrl = otpService.createQRCode(secretKey, userName, path, 20, 20);
+                model.addAttribute("qr", qrUrl);
+                System.out.println();
             } catch (Exception e) {
                 //Handle Exception
             }

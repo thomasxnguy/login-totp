@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Configuration file for password encoder.
- * We used BCrypt as more secure hashing algorithm than SHA256
+ * We used BCrypt as a more secure hashing algorithm than SHA256
  */
 @Configuration
 public class PasswordEncoderConfiguration {

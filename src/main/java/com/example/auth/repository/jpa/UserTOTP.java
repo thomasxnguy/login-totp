@@ -13,8 +13,8 @@ public class UserTOTP {
     @Column(name = "username", length = 45)
     String userName;
 
-    @Column(name = "key", length = 200)
-    String key;
+    @Column(name = "secret", length = 200)
+    String secret;
 
     @Column(name = "enabled")
     boolean enabled;

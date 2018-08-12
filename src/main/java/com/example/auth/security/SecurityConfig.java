@@ -1,5 +1,6 @@
 package com.example.auth.security;
 
+import com.example.auth.security.otp.CustomWebAuthenticationDetailsSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -29,10 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private CustomWebAuthenticationDetailsSource authenticationDetailsSource;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.formLogin().loginPage("/login").permitAll()
+                .authenticationDetailsSource(authenticationDetailsSource)
                 .and().exceptionHandling().accessDeniedPage("/denied").and()
                 .authorizeRequests()
                 .mvcMatchers("/profile*").hasAnyRole("USER", "ADMIN")
@@ -56,5 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder);;
 
     }
+
 }
 

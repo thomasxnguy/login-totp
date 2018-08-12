@@ -1,0 +1,20 @@
+package com.example.auth.security.otp;
+
+import org.springframework.security.authentication.AuthenticationDetailsSource;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * Custom WebAuthenticationDetails to handle 2FA security code
+ */
+@Component
+public class CustomWebAuthenticationDetailsSource implements
+        AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> {
+
+    @Override
+    public WebAuthenticationDetails buildDetails(HttpServletRequest context) {
+        return new CustomWebAuthenticationDetails(context);
+    }
+}
